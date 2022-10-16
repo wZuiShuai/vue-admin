@@ -3,7 +3,10 @@ import "./style.css";
 import App from "./App.vue";
 import router from "@/router/index";
 import { createPinia } from 'pinia'
-import "element-plus/es/components/message/style/css";
+
+// 引入Elmessage和Elloading的css样式文件
+import 'element-plus/theme-chalk/el-message.css'
+
 
 const app = createApp(App);
 app.use(router);
