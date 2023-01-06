@@ -1,0 +1,144 @@
+.dataScreenContainer {
+  width: 100%;
+  height: 100%;
+  background: url("./images/bg.png") no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  .dataScreen {
+    width: 1920px;
+    height: 1080px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    // overflow: hidden;
+    transition: all 0.3s;
+    transform-origin: left top;
+    .dataScreenHeader {
+      display: flex;
+      height: 38px;
+      width: 100%;
+      .headerLeft,
+      .headerRigth {
+        width: 567px;
+        height: 100%;
+        background: url("./images/dataScreen-header-left-bg.png") no-repeat;
+        background-size: 100% 100%;
+      }
+      .headerCenter {
+        position: relative;
+        flex: 1;
+        height: 100%;
+        .headerCTitle {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 82px;
+          font-size: 32px;
+          line-height: 78px;
+          letter-spacing: 4px;
+          text-align: center;
+          color: #05e8fe;
+          background: url("./images/dataScreen-header-center-bg.png") no-repeat;
+          background-size: 100% 100%;
+        }
+        .headerCWarning {
+          height: 44px;
+          width: 622px;
+          margin: 0 auto;
+          font-size: 14px;
+          color: #fff;
+          letter-spacing: 1px;
+          line-height: 44px;
+          background: url("./images/dataScreen-header-warn-bg.png") no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+      .headerLeft {
+        text-align: right;
+      }
+      .headerLBtn {
+        background-image: url("./images/dataScreen-header-btn-bg-l.png");
+        cursor: pointer;
+      }
+      .headerRBtn {
+        background-image: url("./images/dataScreen-header-btn-bg-r.png");
+      }
+
+      .headerLBtn,
+      .headerRBtn {
+        display: inline-block;
+        text-align: center;
+        width: 136px;
+        height: 42px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 42px;
+        color: #29fcff;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+    }
+    .dataScreenMain {
+      width: 100%;
+      padding: 12px 42px 20px;
+      display: flex;
+      flex: 1;
+      .dateScreenMainLeft {
+        width: 394px;
+        height: 100%;
+        margin-right: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: stretch;
+        .leftTop {
+          height: 37%;
+          background: url("./images/dataScreen-main-rt.png") no-repeat;
+          background-size: 100% 100%;
+        }
+        .leftCenter {
+          height: 30%;
+          background: url("./images/dataScreen-main-rc.png") no-repeat;
+          background-size: 100% 100%;
+        }
+        .leftBottom {
+          height: 27%;
+          background: url("./images/dataScreen-main-rb.png") no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+
+      .dateScreenMainCenter {
+        flex: 1;
+        margin-top: 78px;
+        display: flex;
+        flex-direction: column;
+        .centerTop {
+          flex: 1;
+          .title {
+            margin-top: 10px;
+            width: 270px;
+            height: 25px;
+            padding-left: 30px;
+            font-size: 14px;
+            color: #ffffff;
+            letter-spacing: 5px;
+            background: url("./images/map-title-bg.png") no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+          }
+        }
+        .centerBottom {
+          height: 252px;
+          background: url("./images/dataScreen-main-cb.png") no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    }
+  }
+}

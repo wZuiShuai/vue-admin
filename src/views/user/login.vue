@@ -15,7 +15,7 @@
             <img src="@/assets/vue.svg" alt="logo" />
             <p class="text">Admin</p>
           </div>
-          <el-form ref="formRef" :model="user">
+          <el-form ref="formRef" :model="user" @keyup.enter="sub">
             <el-form-item
               prop="username"
               :rules="[
@@ -33,7 +33,7 @@
               >
                 <template #prefix>
                   <el-icon>
-                    <User />
+                    <component is="User"></component>
                   </el-icon>
                 </template>
               </el-input>
@@ -43,7 +43,7 @@
               :rules="{
                 required: true,
                 message: '请输入密码',
-                trigger: ['blur', 'change'],
+                trigger: ['blur'],
               }"
             >
               <el-input
@@ -55,14 +55,16 @@
               >
                 <template #prefix>
                   <el-icon>
-                    <lock />
+                    <component is="Lock"></component>
                   </el-icon>
                 </template>
               </el-input>
             </el-form-item>
             <el-form-item>
-              <el-button :icon="CircleClose" size="large" round>重置</el-button>
-              <el-button type="primary" size="large" round>登录</el-button>
+              <el-button icon="CircleClose" size="large" round>重置</el-button>
+              <el-button type="primary" size="large" round @click="sub"
+                >登录</el-button
+              >
             </el-form-item>
           </el-form>
         </div>
@@ -72,32 +74,11 @@
 </template>
 
 <script setup lang="ts">
-import { User, Lock, CircleClose } from "@element-plus/icons-vue";
-import { reactive, ref } from "vue";
-import type { FormInstance } from "element-plus";
+import { nextTick, reactive, ref } from "vue";
+import { login } from "@/api/user";
 
-import { ElLoading } from "element-plus";
-
-const fullscreenLoading = ref(false);
-const openFullScreen1 = () => {
-  fullscreenLoading.value = true;
-  setTimeout(() => {
-    fullscreenLoading.value = false;
-  }, 2000);
-};
-
-const openFullScreen2 = () => {
-  const loading = ElLoading.service({
-    lock: true,
-    text: "Loading",
-    background: "rgba(0, 0, 0, 0.7)",
-  });
-  setTimeout(() => {
-    loading.close();
-  }, 2000);
-};
-
-const formRef = ref<FormInstance>();
+// import {ElMessage } from "element-plus";
+// const formRef = ref<any>();
 
 const user = reactive<{
   username: string;
@@ -106,6 +87,25 @@ const user = reactive<{
   username: "",
   password: "",
 });
+
+const sub = async () => {
+  let res = login({
+    username: "123",
+    password: "123",
+  });
+  console.log(res);
+};
+
+// const userLogin = ()=>{
+//   if (!formRef.value) return
+//   formRef.value.validate((valid:any) => {
+//     if (valid) {
+//       sub()
+//     } else {
+//       console.log('error submit!')
+//     }
+//   })
+// }
 </script>
 
 <style scoped lang="scss">

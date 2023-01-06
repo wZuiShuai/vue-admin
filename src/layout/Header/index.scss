@@ -1,0 +1,33 @@
+.header {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  .menuIcon {
+    margin-right: 20px;
+    font-size: 1.375rem;
+    cursor: pointer;
+  }
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    .breadcrumb-icon {
+      margin-right: 6px;
+      font-size: 16px;
+    }
+  }
+}
+
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all 0.2s ease;
+}
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(10px);
+}
+.breadcrumb-leave-active {
+  position: absolute;
+  z-index: -1;
+  transition: 0s;
+}

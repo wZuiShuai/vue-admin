@@ -1,17 +1,20 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import path from "path";
+// import Icons from 'unplugin-icons/vite'
+// import IconsResolver from "unplugin-icons/resolver";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
+const pathSrc = path.resolve(__dirname, "src");
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
+      "@": pathSrc, // 设置 `@` 指向 `src` 目录
     },
-    extensions: ['.js', '.json', '.ts'], // 使用路径别名时想要省略的后缀名，可以自己 增减
+    extensions: [".ts",".js", ".json", '.mjs'], // 使用路径别名时想要省略的后缀名，可以自己 增减
   },
   css: {
     preprocessorOptions: {
@@ -23,12 +26,26 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        // IconsResolver({
+        //   prefix: "Icon",
+        // }),
+      ],
+      dts: path.resolve(pathSrc, "auto-imports.d.ts"),
     }),
     Components({
-      resolvers: [ElementPlusResolver({importStyle: "sass",})],
+      resolvers: [
+        // IconsResolver({
+        //   enabledCollections: ["ep"],
+        // }),
+        ElementPlusResolver({ importStyle: "sass" }),
+      ],
+      dts: path.resolve(pathSrc, 'components.d.ts'),
     }),
+    // Icons({
+    //   autoInstall: true,
+    // }),
   ],
-  base: './', // 设置打包路径
-  
-})
+  base: "./", // 设置打包路径
+});
